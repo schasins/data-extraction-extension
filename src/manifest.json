@@ -1,17 +1,19 @@
 {
   "manifest_version": 2,
 
-  "name": "Text Mining",
-  "description": "This extension is an exploration of text mining.",
+  "name": "Data Extraction",
+  "description": "This extension is an exploration of data extraction.",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icons/icon.png",
-    "default_popup": "pages/intro.html"
+    "default_icon": "icons/icon.png"
   },
   "permissions": [
     "tabs",
     "http://*/*",
     "https://*/*"
-  ]
+  ],
+  "background": {
+    "page": "pages/background.html"
+  }
 }
