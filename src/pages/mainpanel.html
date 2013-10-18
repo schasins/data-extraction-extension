@@ -4,13 +4,19 @@
 	<script type="text/javascript" src="../scripts/lib/jquery.js"></script>
 	<script type="text/javascript" src="../scripts/lib/jquery_csv.js"></script>
 	<script type="text/javascript" src="../scripts/background/mainpanel_script.js"></script>
+	
+	<style type="text.css">
+		table, tr, td{
+			border: 1px solid #C0C0C0;
+		}
+	</style>
 </head>
 <body>
  
-	<input type="file" id="files" name="files[]" multiple />
+	<input type="file" id="dataFile" name="dataFile" />
 	<output id="list"></output>
 	
-	<table id="outputTable">	
+	<table id="dataTable">	
 	</table>
  
 </body>

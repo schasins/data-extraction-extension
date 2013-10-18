@@ -1,5 +1,3 @@
-
-
 // Check for the various File API support.
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Great success! All the File APIs are supported.
@@ -7,65 +5,36 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   alert('The File APIs are not fully supported in this browser.');
 }
 
-var table;
-
-function parseCSV(text, lineTerminator, cellTerminator) {
-
-	//break the lines apart
-	var lines = text.split(lineTerminator);
-
-	for(var j = 0; j<lines.length; j++){
-	  
-		if(lines[j] != ""){
-
-			//create a table row 
-			var tableRow = table.appendChild(document.createElement('tr'));
-
-			//split the rows at the cellTerminator character
-			var information = lines[j].split(cellTerminator);
-
-			for(var k = 0; k < information.length; k++){
-				//append the cell to the row
-				var cell = tableRow.appendChild(document.createElement('td'));
-				cell.appendChild(document.createTextNode(information[k]));
-
-			}
-
+function populateTableFromCSV(text,table) {
+	var array2D = $.csv.toArrays(text);
+	
+	for (var i = 0; i<array2D.length; i++){
+		var tableRow = table.appendChild(document.createElement('tr'));
+		var row = array2D[i];
+		for (var j = 0; j<row.length; j++){
+			var cell = tableRow.appendChild(document.createElement('td'));
+			cell.appendChild(document.createTextNode(row[j]));
 		}
-
 	}
-
 }
 
-function handleFileSelect(evt) {
-	var files = evt.target.files; // FileList object
-
-	// Loop through the FileList and populate the 'outputTable' with the data
-	for (var i = 0, f; f = files[i]; i++) {
-
+function handleFileSelectForTable(table) {
+	var handleFileSelect = function(evt) {
+	  var file = evt.target.files[0];
 	  var reader = new FileReader();
-
-	  // Closure to capture the file information.
-	  reader.onload = (function(theFile) {
-		return function(e) {
-		
-		  //call the parse function with the proper line terminator and cell terminator
-		  parseCSV(e.target.result, '\n', ';');
-		
-		};
-	  })(f);
-
+	  reader.onload = (function(e) {
+		  //call the table populating function
+		  populateTableFromCSV(e.target.result,table);
+		});
 	  // Read the file as text
-	  reader.readAsText(f);
-	  
+	  reader.readAsText(file);
 	}
+	return handleFileSelect;
 }
-
-
 
 function setUp(){
-	table = document.getElementById('outputTable');
-	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	var dataTable = document.getElementById('dataTable');
+	document.getElementById('dataFile').addEventListener('change', handleFileSelectForTable(dataTable), false);
 }
 
 $(setUp);
