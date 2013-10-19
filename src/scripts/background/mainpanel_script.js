@@ -1,7 +1,8 @@
 // Check for the various File API support.
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Great success! All the File APIs are supported.
-} else {
+}
+else {
   alert('The File APIs are not fully supported in this browser.');
 }
 
@@ -19,6 +20,7 @@ function populateTableFromCSV(text,table) {
 }
 
 function handleFileSelectForTable(table) {
+	table.innerHTML=""; //clear table so that if we're replacing contents, won't get messed up
 	var handleFileSelect = function(evt) {
 	  var file = evt.target.files[0];
 	  var reader = new FileReader();
@@ -33,8 +35,11 @@ function handleFileSelectForTable(table) {
 }
 
 function setUp(){
+    $( "#tabs" ).tabs();
 	var dataTable = document.getElementById('dataTable');
 	document.getElementById('dataFile').addEventListener('change', handleFileSelectForTable(dataTable), false);
+	var scriptConfigurationTable = document.getElementById('scriptConfigurationTable');
+	document.getElementById('scriptConfigurationFile').addEventListener('change', handleFileSelectForTable(scriptConfigurationTable), false);
 }
 
 $(setUp);

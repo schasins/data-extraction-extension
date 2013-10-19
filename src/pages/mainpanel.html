@@ -3,21 +3,40 @@
 <head>
 	<script type="text/javascript" src="../scripts/lib/jquery.js"></script>
 	<script type="text/javascript" src="../scripts/lib/jquery_csv.js"></script>
+	<script type="text/javascript" src="../scripts/lib/jquery-ui.js"></script>
 	<script type="text/javascript" src="../scripts/background/mainpanel_script.js"></script>
 	
-	<style type="text.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<style type="text/css">
 		table, tr, td{
 			border: 1px solid #C0C0C0;
+			border-collapse:collapse;
 		}
 	</style>
 </head>
 <body>
  
+  
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Data</a></li>
+    <li><a href="#tabs-2">Script Configuration</a></li>
+  </ul>
+  
+  <div id="tabs-1">
 	<input type="file" id="dataFile" name="dataFile" />
-	<output id="list"></output>
-	
+	<output id="file-1"></output>
 	<table id="dataTable">	
 	</table>
+  </div>
+  
+  <div id="tabs-2">
+	<input type="file" id="scriptConfigurationFile" name="scriptConfigurationFile" />
+	<output id="file-2"></output>
+	<table id="scriptConfigurationTable">	
+	</table>  
+  </div>
+</div>
  
 </body>
 </html>
