@@ -34,12 +34,30 @@ function handleFileSelectForTable(table) {
 	return handleFileSelect;
 }
 
+function runScript(){
+	alert("Would run script here.");
+}
+
+function scriptForOneRow(knownColumns) {
+	var name = knownColumns[0];
+	//go to google
+	//search for name + sf whatever
+	//click on enter
+	//click on first link
+	//click on sf whatever's page for the school
+	//do data analysis there (??? - just the word searching on that text probably)
+	//follow link to the school's own page
+	//collect everything we can get to from that main page
+	//on the main page and the collected links, run the word searching algorithm
+}
+
 function setUp(){
     $( "#tabs" ).tabs();
 	var dataTable = document.getElementById('dataTable');
 	document.getElementById('dataFile').addEventListener('change', handleFileSelectForTable(dataTable), false);
 	var scriptConfigurationTable = document.getElementById('scriptConfigurationTable');
 	document.getElementById('scriptConfigurationFile').addEventListener('change', handleFileSelectForTable(scriptConfigurationTable), false);
+	document.getElementById('runScript').addEventListener('click', runScript);
 }
 
 $(setUp);

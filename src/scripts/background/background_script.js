@@ -9,7 +9,7 @@ console.log("test");
     if (typeof panelWindow == 'undefined' || panelWindow.closed) {
 
       chrome.windows.create({url: chrome.extension.getURL(
-          'pages/mainpanel.html'), width: 400, height: 800, focused: true,
+          'pages/mainpanel.html'), width: 500, height: 800, focused: true,
           type: 'panel'}, function(winInfo) {
         panelWindow = winInfo;
       });
